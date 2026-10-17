@@ -54,6 +54,6 @@ Modern, high-performance developer portfolio showcasing systems profiling resear
 
 ## 📬 Contact & Links
 
-* **Email:** [ishaanbaru33@gmail.com](mailto:ishaanbaru33@gmail.com)
+* **Email:** [ishn.b03@gmail.com](mailto:ishn.b03@gmail.com)
 * **GitHub:** [@ishanbaru03](https://github.com/ishanbaru03)
 * **LinkedIn:** [Ishaan Baru](https://linkedin.com)
