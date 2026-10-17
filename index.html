@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ishaan Baru | Portfolio</title>
+  
+  <!-- Tailwind CSS & Fonts -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['Geist Mono', 'monospace'],
+          },
+          colors: {
+            surface: {
+              DEFAULT: '#080c14',
+              card: 'rgba(15, 23, 42, 0.65)',
+              border: '#1e293b',
+              accent: '#38bdf8'
+            }
+          }
+        }
+      }
+    }
+    function switchTab(tabId) {
+  const tabs = ['overview', 'architecture', 'code'];
+
+  tabs.forEach((id) => {
+    const btn = document.getElementById(`tab-btn-${id}`);
+    const content = document.getElementById(`tab-content-${id}`);
+
+    if (id === tabId) {
+      content.classList.remove('hidden');
+      btn.classList.add('text-white', 'bg-slate-800');
+      btn.classList.remove('text-slate-400');
+    } else {
+      content.classList.add('hidden');
+      btn.classList.remove('text-white', 'bg-slate-800');
+      btn.classList.add('text-slate-400');
+    }
+  });
+}
+  </script>
+  <style>
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #080c14; }
+    ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #38bdf8; }
+
+    /* Canvas background pinning */
+    #bg-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body class="bg-[#080c14] text-slate-300 font-sans antialiased selection:bg-sky-500/20 selection:text-sky-300 relative min-h-screen">
+
+  <!-- Interactive Background Canvas -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Sticky Navigation -->
+  <header class="sticky top-0 z-50 backdrop-blur-xl bg-[#080c14]/80 border-b border-slate-800/80">
+    <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="#" class="font-mono text-sm tracking-tight text-white font-medium hover:text-sky-400 transition-colors">
+        ishaan.baru<span class="text-sky-400">()</span>
+      </a>
+      <div class="flex items-center space-x-6">
+        <nav class="hidden md:flex items-center space-x-6 text-xs uppercase tracking-wider font-mono text-slate-400">
+          <a href="#research" class="hover:text-white transition-colors">Research</a>
+          <a href="#projects" class="hover:text-white transition-colors">Projects</a>
+          <a href="#stack" class="hover:text-white transition-colors">Stack</a>
+          <a href="#education" class="hover:text-white transition-colors">Education</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="relative z-10 max-w-5xl mx-auto px-6 py-16 space-y-24">
+
+    <!-- Hero Section with Avatar & CV Trigger -->
+    <section class="flex flex-col-reverse md:flex-row items-start md:items-center justify-between gap-10 pt-4">
+      <div class="space-y-6 flex-1">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono bg-sky-950/60 text-sky-400 border border-sky-800/60 backdrop-blur-sm">
+          <span class="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse"></span>
+          Systems Profiling & Deterministic Backend Systems
+        </div>
+        
+        <div class="space-y-2">
+          <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-white">Ishaan Baru</h1>
+          <p class="text-lg text-slate-400 font-medium">
+            M.Tech Candidate in Computer Science · University of Jammu
+          </p>
+        </div>
+
+        <p class="text-base text-slate-400 max-w-xl leading-relaxed">
+          Specializing in low-level execution analysis, thread preemption telemetry, and high-concurrency, ACID-compliant backend APIs. Focused on empirical benchmarking across POSIX/Win32 environments and scalable RAG pipelines.
+        </p>
+
+        <!-- CTA Action Buttons -->
+        <div class="flex flex-wrap items-center gap-4 pt-2 font-mono text-xs">
+          <a href="resume.pdf" download="Ishaan_Baru_Resume.pdf" class="px-5 py-2.5 rounded-lg bg-sky-500 hover:bg-sky-400 text-slate-950 font-semibold shadow-lg shadow-sky-500/10 flex items-center gap-2 transition-all">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+            </svg>
+            Download Resume (PDF)
+          </a>
+          <a href="mailto:ishaanbaru33@gmail.com" class="px-4 py-2.5 rounded-lg bg-slate-900/80 border border-slate-800 hover:border-slate-700 text-slate-300 transition-all">
+            ishn.b03@gmail.com
+          </a>
+          <a href="https://github.com/ishanbaru03?tab=repositories" target="_blank" class="px-3 py-2 text-slate-400 hover:text-white transition-colors">
+            GitHub ↗
+          </a>
+          <a href="https://www.linkedin.com/in/ishnb/" target="_blank" class="px-3 py-2 text-slate-400 hover:text-white transition-colors">
+            LinkedIn ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- Profile Avatar Container -->
+      <div class="relative group">
+        <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-sky-500/30 to-indigo-500/30 blur-lg opacity-70 group-hover:opacity-100 transition duration-500"></div>
+        <div class="relative w-40 h-40 sm:w-48 sm:h-48 rounded-2xl overflow-hidden bg-slate-900 border border-slate-700/80 shadow-2xl flex items-center justify-center">
+          <img 
+            src="avatar.jpg" 
+            alt="Ishaan Baru" 
+            class="w-full h-full object-cover object-top"
+            onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Ishaan+Baru&background=0f172a&color=38bdf8&size=256';"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Experimental Systems Research -->
+    <section id="research" class="space-y-6">
+      <div class="border-b border-slate-800 pb-3 flex items-baseline justify-between">
+        <div>
+          <h2 class="text-xs font-mono uppercase tracking-widest text-sky-400">Empirical Research</h2>
+          <p class="text-xl font-semibold text-white mt-1">CPU Profiling & Context Switching Overhead</p>
+        </div>
+        <span class="text-xs font-mono text-slate-500 hidden sm:inline">Univ. of Jammu</span>
+      </div>
+
+      <div class="p-6 sm:p-8 rounded-2xl bg-slate-900/60 backdrop-blur-md border border-slate-800/90 relative space-y-6 shadow-xl">
+        <div>
+          <span class="text-xs font-mono text-slate-400">Author: Ishaan Baru · Department of Computer Science & IT</span>
+          <h3 class="text-lg sm:text-xl font-semibold text-white tracking-tight mt-1">
+            "The Energy Fallacy of Thread Preemption: Empirical Quantification of Context Switching Overhead"
+          </h3>
+          <p class="text-sm text-slate-400 mt-2 leading-relaxed">
+            Evaluated preemption penalties on an AMD Ryzen 5 5625U architecture by binding an identical 100M bitwise computation workload to Core 0 across two deterministic regimes: contiguous single-thread execution versus 20,000 synchronized context switches.
+          </p>
+        </div>
+
+        <!-- Telemetry Data Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 font-mono">
+          <div class="p-4 rounded-xl bg-slate-950/80 border border-slate-800/80">
+            <span class="text-slate-500 text-xs block">Execution Slowdown</span>
+            <span class="text-2xl font-bold text-sky-400">7.49x</span>
+            <span class="text-xs text-slate-400 block mt-1">14.75 s vs. 110.50 s</span>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-950/80 border border-slate-800/80">
+            <span class="text-slate-500 text-xs block">Cumulative Energy Surge</span>
+            <span class="text-2xl font-bold text-rose-400">+635.9%</span>
+            <span class="text-xs text-slate-400 block mt-1">55.96 J vs. 411.86 J</span>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-950/80 border border-slate-800/80">
+            <span class="text-slate-500 text-xs block">Instantaneous Power</span>
+            <span class="text-2xl font-bold text-emerald-400">~3.76 W</span>
+            <span class="text-xs text-slate-400 block mt-1">Flat thermal profile</span>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-xl bg-sky-950/30 border-l-2 border-sky-400 text-xs text-slate-300 leading-relaxed font-mono">
+          <span class="text-sky-400 font-semibold">Key Finding:</span> Proved that thread preemption overhead manifests primarily as cumulative energy waste rather than elevated instantaneous thermal dissipation.
+        </div>
+      </div>
+    </section>
+
+    <!-- Engineering Projects -->
+    <section id="projects" class="space-y-6">
+      <div class="border-b border-slate-800 pb-3">
+        <h2 class="text-xs font-mono uppercase tracking-widest text-sky-400">Engineering Work</h2>
+        <p class="text-xl font-semibold text-white mt-1">Featured Production Systems</p>
+      </div>
+
+      <div class="grid grid-cols-1 gap-6">
+
+        <!-- Project 1: RAG Engine -->
+        <!-- Project 1: RAG Engine with Interactive Tabs -->
+<div class="rounded-2xl bg-slate-900/60 backdrop-blur-md border border-slate-800/90 overflow-hidden shadow-xl transition-all">
+  
+  <!-- Card Header & Tab Controls -->
+  <div class="p-6 pb-4 border-b border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+    <div>
+      <div class="flex items-center gap-3">
+        <h3 class="text-lg font-semibold text-white">Production-Grade Hybrid RAG Knowledge Engine</h3>
+        <span class="text-xs font-mono text-sky-400 bg-sky-950/50 border border-sky-800/50 px-2.5 py-0.5 rounded-full">
+          p95 &lt;180ms
+        </span>
+      </div>
+      <p class="text-xs font-mono text-slate-400 mt-1">Multi-Modal Retrieval Pipeline & Vector Indexing</p>
+    </div>
+
+    <!-- Tab Buttons -->
+    <div class="flex items-center p-1 bg-slate-950 rounded-lg border border-slate-800 font-mono text-xs">
+      <button onclick="switchTab('overview')" id="tab-btn-overview" class="px-3 py-1.5 rounded-md text-white bg-slate-800 transition-all">
+        Overview
+      </button>
+      <button onclick="switchTab('architecture')" id="tab-btn-architecture" class="px-3 py-1.5 rounded-md text-slate-400 hover:text-white transition-all">
+        Architecture
+      </button>
+      <button onclick="switchTab('code')" id="tab-btn-code" class="px-3 py-1.5 rounded-md text-slate-400 hover:text-white transition-all">
+        Code
+      </button>
+    </div>
+  </div>
+
+  <!-- Tab 1: Overview Panel -->
+  <div id="tab-content-overview" class="p-6 space-y-4">
+    <ul class="text-sm text-slate-400 space-y-2 list-disc list-inside leading-relaxed">
+      <li>Engineered an end-to-end RAG service to ingest, index, and query multi-format technical documentation with &lt;180ms p95 retrieval latency.</li>
+      <li>Engineered a hybrid search pipeline combining BM25 sparse keyword matching with dense vector embeddings, boosting top-5 retrieval recall by 28% over pure semantic search.</li>
+      <li>Implemented recursive semantic chunking and Redis caching for recurring embeddings, reducing redundant model inference calls and vector database compute by 42%.</li>
+      <li>Authored automated evaluation test suites using Pytest to systematically measure retrieval faithfulness, context precision, and guard against hallucinations.</li>
+    </ul>
+    <div class="flex flex-wrap gap-2 pt-2 font-mono text-xs text-slate-300">
+      <span class="px-2.5 py-1 bg-slate-950/80 border border-slate-800 rounded-md">Python</span>
+      <span class="px-2.5 py-1 bg-slate-950/80 border border-slate-800 rounded-md">FastAPI</span>
+      <span class="px-2.5 py-1 bg-slate-950/80 border border-slate-800 rounded-md">ChromaDB</span>
+      <span class="px-2.5 py-1 bg-slate-950/80 border border-slate-800 rounded-md">Redis</span>
+      <span class="px-2.5 py-1 bg-slate-950/80 border border-slate-800 rounded-md">Docker</span>
+      <span class="px-2.5 py-1 bg-slate-950/80 border border-slate-800 rounded-md">Pytest</span>
+    </div>
+  </div>
+
+  <!-- Tab 2: Architecture Diagram Panel -->
+  <div id="tab-content-architecture" class="p-6 hidden">
+    <div class="bg-slate-950/90 border border-slate-800 rounded-xl p-5 overflow-x-auto">
+      <pre class="font-mono text-xs text-sky-400 leading-snug">
+[User Query]
+     │
+     ▼
+[FastAPI Gateway] ──(Check Query Hash)──► [Redis Cache] ──► (Cache Hit: Return Cached Response &lt;15ms)
+     │                                           │ (Miss)
+     ├───────────────────────────────────────────┴────────────────────────┐
+     ▼                                                                    ▼
+[Sparse Branch: BM25]                                          [Dense Branch: Text Embeddings]
+Exact Keyword / Lexical Scoring                                Dense Vector Representation
+     │                                                                    │
+     ▼                                                                    ▼
+[BM25 Inverted Index]                                          [ChromaDB Vector Store]
+Top-K Lexical Candidates                                       Top-K Semantic Candidates
+     │                                                                    │
+     └───────────────────────────────┬────────────────────────────────────┘
+                                     ▼
+                      [Reciprocal Rank Fusion (RRF)]
+                      Fuses Sparse & Dense Ranks (+28% Top-5 Recall)
+                                     │
+                                     ▼
+                      [Context Window & Prompt Guard]
+                      Pytest-Evaluated Guardrails Against Hallucination
+                                     │
+                                     ▼
+                             [Inference / Answer]
+      </pre>
+    </div>
+  </div>
+
+  <!-- Tab 3: Code Implementation Panel -->
+  <div id="tab-content-code" class="p-6 hidden">
+    <div class="bg-slate-950/90 border border-slate-800 rounded-xl p-4 overflow-x-auto">
+      <div class="flex justify-between text-[11px] font-mono text-slate-500 pb-2 border-b border-slate-800 mb-3">
+        <span>rag_engine/router.py</span>
+        <span>Python / FastAPI</span>
+      </div>
+      <pre class="font-mono text-xs text-slate-300 leading-relaxed">
+<span class="text-purple-400">async def</span> <span class="text-sky-400">hybrid_retrieval</span>(query: <span class="text-emerald-400">str</span>, top_k: <span class="text-emerald-400">int</span> = <span class="text-amber-300">5</span>):
+    cache_key = hashlib.sha256(query.encode()).hexdigest()
+    
+    <span class="text-slate-500"># 1. Fast Redis cache check to cut compute by 42%</span>
+    <span class="text-purple-400">if</span> cached := <span class="text-purple-400">await</span> redis_client.get(cache_key):
+        <span class="text-purple-400">return</span> json.loads(cached)
+
+    <span class="text-slate-500"># 2. Concurrently execute dense & sparse scoring</span>
+    dense_task = asyncio.create_task(chroma_store.query_embedding(query, k=top_k*2))
+    sparse_task = asyncio.create_task(bm25_index.score(query, k=top_k*2))
+    dense_results, sparse_results = <span class="text-purple-400">await</span> asyncio.gather(dense_task, sparse_task)
+
+    <span class="text-slate-500"># 3. Reciprocal Rank Fusion (RRF)</span>
+    fused_scores = reciprocal_rank_fusion(dense_results, sparse_results, k=<span class="text-amber-300">60</span>)
+    top_docs = sorted(fused_scores.items(), key=<span class="text-purple-400">lambda</span> x: x[<span class="text-amber-300">1</span>], reverse=<span class="text-purple-400">True</span>)[:top_k]
+
+    <span class="text-purple-400">await</span> redis_client.set(cache_key, json.dumps(top_docs), ex=<span class="text-amber-300">3600</span>)
+    <span class="text-purple-400">return</span> top_docs</pre>
+    </div>
+  </div>
+
+</div>
+
+        <!-- Project 2: Financial Ledger -->
+        <div class="p-6 sm:p-7 rounded-2xl bg-slate-900/60 backdrop-blur-md border border-slate-800/90 hover:border-slate-700 transition-all space-y-4 shadow-xl">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div class="space-y-1">
+              <h3 class="text-lg font-semibold text-white">Concurrent Transactional Ledger & Idempotent API</h3>
+              <p class="text-xs font-mono text-slate-400">ACID Financial Transaction Engine</p>
+            </div>
+            <span class="text-xs font-mono text-emerald-400 bg-emerald-950/50 border border-emerald-800/50 px-2.5 py-1 rounded-full w-fit">
+              Zero Drift Under Concurrency
+            </span>
+          </div>
+          
+          <ul class="text-sm text-slate-400 space-y-2 list-disc list-inside leading-relaxed">
+            <li>Designed an ACID-compliant double-entry ledger backend processing concurrent inter-account transfers with zero balance drift.</li>
+            <li>Enforced idempotency key verification and row-level locking to prevent duplicate debiting under network retries and concurrent race conditions.</li>
+            <li>Structured Pydantic validation layers and custom domain exceptions to ensure non-negative balances and atomic rollbacks upon failure.</li>
+            <li>Authored unit and integration test suites simulating payload tampering and depleted balances, maintaining &gt;90% branch coverage.</li>
+          </ul>
+
+          <div class="flex flex-wrap gap-2 pt-2 font-mono text-xs text-slate-300">
+            <span class="px-2.5 py-1 bg-slate-950/80 border border-slate-800 rounded-md">Python</span>
+            <span class="px-2.5 py-1 bg-slate-950/80 border border-slate-800 rounded-md">FastAPI</span>
+            <span class="px-2.5 py-1 bg-slate-950/80 border border-slate-800 rounded-md">PostgreSQL</span>
+            <span class="px-2.5 py-1 bg-slate-950/80 border border-slate-800 rounded-md">Docker</span>
+            <span class="px-2.5 py-1 bg-slate-950/80 border border-slate-800 rounded-md">Pytest</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Technical Stack -->
+    <section id="stack" class="space-y-6">
+      <div class="border-b border-slate-800 pb-3">
+        <h2 class="text-xs font-mono uppercase tracking-widest text-sky-400">Technical Foundation</h2>
+        <p class="text-xl font-semibold text-white mt-1">Categorized Competencies</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="p-5 rounded-xl bg-slate-900/60 backdrop-blur-md border border-slate-800/80 space-y-2">
+          <span class="text-xs font-mono uppercase tracking-wider text-sky-400 block">Systems & Architecture</span>
+          <p class="text-sm text-slate-300 leading-relaxed">
+            Linux/POSIX, Win32 API, Multithreading, Thread Affinity & Synchronization, Hardware Telemetry, CPU Cache/TLB Behavior
+          </p>
+        </div>
+
+        <div class="p-5 rounded-xl bg-slate-900/60 backdrop-blur-md border border-slate-800/80 space-y-2">
+          <span class="text-xs font-mono uppercase tracking-wider text-sky-400 block">Backend & Data Infrastructure</span>
+          <p class="text-sm text-slate-300 leading-relaxed">
+            FastAPI, MySQL, PostgreSQL, Redis, ChromaDB, FAISS, Docker, REST APIs
+          </p>
+        </div>
+
+        <div class="p-5 rounded-xl bg-slate-900/60 backdrop-blur-md border border-slate-800/80 space-y-2">
+          <span class="text-xs font-mono uppercase tracking-wider text-sky-400 block">Languages</span>
+          <p class="text-sm font-mono text-slate-200">
+            C, C++, Python, SQL, Java, Bash, JavaScript
+          </p>
+        </div>
+
+        <div class="p-5 rounded-xl bg-slate-900/60 backdrop-blur-md border border-slate-800/80 space-y-2">
+          <span class="text-xs font-mono uppercase tracking-wider text-sky-400 block">Tools & Testing</span>
+          <p class="text-sm text-slate-300 leading-relaxed">
+            Git, GCC/MinGW, Pytest, Pandas, NumPy, Linux CLI
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education & Credentials -->
+    <section id="education" class="space-y-6">
+      <div class="border-b border-slate-800 pb-3">
+        <h2 class="text-xs font-mono uppercase tracking-widest text-sky-400">Academic Background</h2>
+        <p class="text-xl font-semibold text-white mt-1">Degrees & Verified Credentials</p>
+      </div>
+
+      <div class="space-y-3 font-mono text-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 rounded-xl bg-slate-900/60 backdrop-blur-md border border-slate-800/80">
+          <div>
+            <span class="font-medium text-white">M.Tech in Computer Science</span>
+            <span class="text-slate-500 text-xs block sm:inline sm:ml-2">· University of Jammu</span>
+          </div>
+          <span class="text-sky-400 text-xs mt-1 sm:mt-0">Expected 2028</span>
+        </div>
+
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 rounded-xl bg-slate-900/60 backdrop-blur-md border border-slate-800/80">
+          <div>
+            <span class="font-medium text-white">Master of Computer Applications (MCA)</span>
+            <span class="text-slate-500 text-xs block sm:inline sm:ml-2">· MIET Jammu</span>
+          </div>
+          <span class="text-slate-400 text-xs mt-1 sm:mt-0">2026</span>
+        </div>
+
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 rounded-xl bg-slate-900/60 backdrop-blur-md border border-slate-800/80">
+          <div>
+            <span class="font-medium text-white">Bachelor of Science (B.Sc)</span>
+            <span class="text-slate-500 text-xs block sm:inline sm:ml-2">· IGNOU</span>
+          </div>
+          <span class="text-slate-400 text-xs mt-1 sm:mt-0">2023</span>
+        </div>
+      </div>
+
+      <div class="pt-2 flex flex-wrap gap-2 text-xs font-mono text-slate-400">
+        <span class="px-3 py-1.5 bg-slate-950/80 border border-slate-800 rounded-md">IBM: Minor Degree / Certification in AI/ML</span>
+        <span class="px-3 py-1.5 bg-slate-950/80 border border-slate-800 rounded-md">Google: Data Analytics Professional Certificate</span>
+        <span class="px-3 py-1.5 bg-slate-950/80 border border-slate-800 rounded-md">Infosys SpringBoard: Java & SQL Developer Certifications</span>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="pt-12 border-t border-slate-800/80 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 font-mono gap-4">
+      <p>© 2026 Ishaan Baru · Jammu, J&K</p>
+      <div class="flex gap-6">
+        <a href="mailto:ishn.b03@gmail.com" class="hover:text-slate-300 transition-colors">Email</a>
+        <a href="https://github.com/ishanbaru03?tab=repositories" target="_blank" class="hover:text-slate-300 transition-colors">GitHub</a>
+        <a href="https://www.linkedin.com/in/ishnb/" target="_blank" class="hover:text-slate-300 transition-colors">LinkedIn</a>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- Interactive Ambient Background Animation Script -->
+  <script>
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    const particles = [];
+    const particleCount = 45;
+
+    for (let i = 0; i < particleCount; i++) {
+      particles.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
+        radius: Math.random() * 1.5 + 0.5,
+      });
+    }
+
+    let mouse = { x: null, y: null };
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.x;
+      mouse.y = e.y;
+    });
+    window.addEventListener('mouseout', () => {
+      mouse.x = null;
+      mouse.y = null;
+    });
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+
+      // Render subtle gradient nodes and connecting web
+      for (let i = 0; i < particleCount; i++) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0 || p.x > width) p.vx *= -1;
+        if (p.y < 0 || p.y > height) p.vy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(56, 189, 248, 0.25)';
+        ctx.fill();
+
+        // Connect near particles
+        for (let j = i + 1; j < particleCount; j++) {
+          const p2 = particles[j];
+          const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+          if (dist < 130) {
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = `rgba(56, 189, 248, ${0.12 * (1 - dist / 130)})`;
+            ctx.stroke();
+          }
+        }
+
+        // Gentle interactive pull toward mouse
+        if (mouse.x !== null) {
+          const mouseDist = Math.hypot(p.x - mouse.x, p.y - mouse.y);
+          if (mouseDist < 100) {
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(mouse.x, mouse.y);
+            ctx.strokeStyle = `rgba(56, 189, 248, ${0.2 * (1 - mouseDist / 100)})`;
+            ctx.stroke();
+          }
+        }
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
+</body>
+</html>
